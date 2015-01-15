@@ -2,6 +2,8 @@
 
 namespace Cascade\Enumerator;
 
+use Cascade\Enumerator\Exception\InvalidEnumeratorValueException;
+
 abstract class AbstractEnumerator implements Enumerator, EnumeratorValue
 {
     /**
@@ -57,5 +59,20 @@ abstract class AbstractEnumerator implements Enumerator, EnumeratorValue
     public static function has(EnumeratorValue $value)
     {
         return array_key_exists($value->getName(), static::getValues());
+    }
+
+    public static function __callStatic($name, $arguments)
+    {
+        $values = static::getValues();
+
+        if (array_key_exists($name, $values)) {
+            return $values[$name];
+        }
+
+        throw new InvalidEnumeratorValueException(sprintf(
+            'Enumerator value %s:%s does not exist',
+            get_called_class(),
+            $name
+        ));
     }
 }

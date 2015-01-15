@@ -12,6 +12,34 @@ $ composer require cascademedia/php-enumerators:dev-master
 
 Alternatively, you can clone/download this repository and install the package manually.
 
+Usage
+-----
+```php
+class TokenType extends AbstractEnumerator
+{
+    const STRING = 'token_string';
+    const NUMBER = 'token_number';
+}
+
+function read_token_type(TokenType $type)
+{
+    switch ($type) {
+        case TokenType::STRING():
+            // The token type is a string!
+            break;
+        case TokenType::NUMBER():
+            // The token type is a number!
+            break;
+        default:
+            break;
+    }
+}
+
+$tokenType = TokenType::STRING();
+
+read_token_type($tokenType);
+```
+
 License
 -------
 This library is MIT licensed, meaning it is free for anyone to use and modify.

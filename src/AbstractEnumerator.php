@@ -34,7 +34,7 @@ abstract class AbstractEnumerator implements Enumerator, EnumeratorValue
         return $this->value;
     }
 
-    public function getValues()
+    public static function getValues()
     {
         static $values = [];
 

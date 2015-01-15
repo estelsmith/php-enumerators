@@ -7,7 +7,7 @@ interface Enumerator
     /**
      * @return EnumeratorValue[]
      */
-    public function getValues();
+    public static function getValues();
 
     /**
      * @param EnumeratorValue $value
